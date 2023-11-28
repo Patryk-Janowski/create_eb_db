@@ -2,7 +2,11 @@ provider "aws" {
   region = var.region
 }
 
-variable "region" {
-  type = string
-  default = "us-west-2"
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.25"
+    }
+  }
 }
