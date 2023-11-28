@@ -1,5 +1,6 @@
 resource "aws_db_instance" "vulpydb" {
   instance_class         = "db.t3.micro"
+  identifier             = "vulpy_db"
   allocated_storage      = 10
   username               = "vulpy"
   password               = "good_vulpy"
