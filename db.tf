@@ -1,6 +1,6 @@
 resource "aws_db_instance" "vulpydb" {
   instance_class         = "db.t3.micro"
-  identifier             = "vulpy_db"
+  identifier             = "vulpy-db"
   allocated_storage      = 10
   username               = "vulpy"
   password               = "good_vulpy"
@@ -16,7 +16,7 @@ resource "null_resource" "init_db" {
     command = <<EOL
 export AWS_DB_USER=${aws_db_instance.vulpydb.username} \
 && export AWS_DB_PASSWORD=${aws_db_instance.vulpydb.password} \
-&& export AWS_DB_HOST=$(echo ${aws_db_instance.vulpydb.endpoint} \
+&& export AWS_DB_HOST=${aws_db_instance.vulpydb.endpoint} \
 && export AWS_DB_PORT=${aws_db_instance.vulpydb.port} \
 && export AWS_DB_ID=${aws_db_instance.vulpydb.id} \
 && export AWS_REGION=${var.region} \
