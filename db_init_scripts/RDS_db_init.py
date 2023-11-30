@@ -3,9 +3,9 @@ from libuser import user_create
 import os
 import boto3
 
+
 def modify_public_access(db_instance_identifier, publicly_accessible, aws_region):
     rds_client = boto3.client('rds', region_name=aws_region)
-
     try:
         response = rds_client.modify_db_instance(
             DBInstanceIdentifier=db_instance_identifier,
@@ -16,7 +16,8 @@ def modify_public_access(db_instance_identifier, publicly_accessible, aws_region
     except Exception as e:
         print(f'Error: {e}')
 
-# Database DB_CONFIGuration
+
+# Database configuration
 DB_CONFIG = {
     'user': os.environ.get('AWS_DB_USER'),
     'password': os.environ.get('AWS_DB_PASSWORD'),
