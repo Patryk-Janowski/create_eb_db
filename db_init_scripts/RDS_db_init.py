@@ -1,21 +1,6 @@
 import mysql.connector
 from libuser import user_create
 import os
-import boto3
-
-
-def modify_public_access(db_instance_identifier, publicly_accessible, aws_region):
-    rds_client = boto3.client('rds', region_name=aws_region)
-    try:
-        response = rds_client.modify_db_instance(
-            DBInstanceIdentifier=db_instance_identifier,
-            PubliclyAccessible=publicly_accessible,
-            ApplyImmediately=True
-        )
-        print(f'Success: {response}')
-    except Exception as e:
-        print(f'Error: {e}')
-
 
 # Database configuration
 DB_CONFIG = {
@@ -96,7 +81,3 @@ def db_init_posts():
 if __name__ == '__main__':
     db_init_users()
     db_init_posts()
-    db_instance_identifier = os.environ.get('AWS_DB_ID')
-    aws_region = os.environ.get('AWS_REGION')
-    publicly_accessible = False  # Set to False to make the DB instance not publicly accessible
-    modify_public_access(db_instance_identifier, publicly_accessible, aws_region)
