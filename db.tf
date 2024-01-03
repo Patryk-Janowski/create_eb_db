@@ -1,7 +1,7 @@
 resource "aws_db_instance" "vulpydb" {
   instance_class         = "db.t3.micro"
   identifier             = "vulpy-db"
-  snapshot_identifier    = "vulpy-db-initial"
+  snapshot_identifier    = "arn:aws:rds:us-west-2:758538809139:snapshot:vulpy-db-initial"
   allocated_storage      = 10
   username               = "vulpy"
   password               = "good_vulpy"
